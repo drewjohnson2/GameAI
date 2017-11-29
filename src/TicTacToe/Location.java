@@ -19,7 +19,7 @@ public class Location {
         
         for(int i = 0; i < BOARD_SIZE; i++)
         {
-            board[i] = ' ';     //Initialize board with empty spaces
+            board[i] = '-';     //Initialize board with empty spaces
         }
     }
 
@@ -58,7 +58,7 @@ public class Location {
      */
     public Location remove(int index)
     {
-        board[index] = ' ';     // Removes move from board
+        board[index] = '-';     // Removes move from board
         turn = (turn == 'x' ? 'o' : 'x');   // change turns
         return this;
     }
@@ -74,7 +74,7 @@ public class Location {
                                                 // moves.
         for(int i = 0; i < BOARD_SIZE; i++)
         {
-            if(board[i] == ' ')
+            if(board[i] == '-')
             {
                 list.add(i);
             }
@@ -148,7 +148,7 @@ public class Location {
         
         for(int i = 0; i < BOARD_SIZE; i++)
         {
-            if(board[i] == ' ')
+            if(board[i] == '-')
             {
                 total++;
             }
