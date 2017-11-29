@@ -6,7 +6,7 @@ public class Main
 {
     
     public static void main(String [] args)
-    {
+    {        
         Location location = new Location();
         Scanner input = new Scanner(System.in);
         char [] gameBoard = new char [9];
