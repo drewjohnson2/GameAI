@@ -1,3 +1,15 @@
+/**
+ * This is an implementation of the minimax algorithm for a tic-tac-toe
+ * game. 
+ * 
+ * Implementation notes for the minimax have been
+ * taken from Chong Kim at https://youtu.be/9z2Z6xiauNA
+ * 
+ * @author  Drew Johnson
+ * @version 1.0
+ * @since   2017-11-10
+ */
+
 package TicTacToe;
 
 import java.util.ArrayList;
@@ -185,9 +197,17 @@ public class Location {
         return turn == 'x' ? Collections.max(list) : Collections.min(list);
     }
     
+    /**
+     * Compares moves based on the index returned by the minimax method.
+     * 
+     * @return if the user is 'x' (AI) the max is returned. Else, the minimum
+     * is returned.
+     */
     public int bestMove()
     {
         Comparator<Integer> cmp = new Comparator<Integer>() {
+            // Implements empty compare method used for comparing values 
+            // from variable 'list' of possible moves.
             @Override
             public int compare(Integer first, Integer second) 
             {
@@ -202,10 +222,15 @@ public class Location {
         };
         
         List<Integer> list = possibleMoves();
-        
+      
         return turn == 'x' ? Collections.max(list, cmp) : Collections.min(list, cmp);
     }
     
+    /**
+     * This determines whether or not the game is over.
+     * 
+     * @return a boolean value on whether 'x' or 'o' is the winner or a draw.
+     */
     public boolean gameOver()
     {
         return winner('x') || winner('o') || blanks() == 0;

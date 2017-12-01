@@ -48,7 +48,7 @@ public class LocationTest {
     {
         Location location = new Location();
         assertEquals('x', location.turn);
-        assertEquals("         ", location.toString());
+        assertEquals("---------", location.toString());
     }
     
     @Test
@@ -56,7 +56,7 @@ public class LocationTest {
     {
         Location location = new Location().move(1);
         assertEquals('o', location.turn);
-        assertEquals(" x       ", location.toString());
+        assertEquals("-x-------", location.toString());
         
     }
     
@@ -65,7 +65,7 @@ public class LocationTest {
     {
         Location location = new Location().move(1).remove(1);
         assertEquals('x', location.turn);
-        assertEquals("         ", location.toString());
+        assertEquals("---------", location.toString());
     }
     
     @Test
@@ -87,29 +87,29 @@ public class LocationTest {
     public void testWinner() throws Exception
     {
         assertFalse(new Location().winner('x'));
-        assertTrue(new Location("xxx      ", 'x').winner('x'));
+        assertTrue(new Location("xxx------", 'x').winner('x'));
         
-        assertTrue(new Location("o  " +
-                                "o  " +
-                                "o  ", 'x').winner('o'));
+        assertTrue(new Location("o--" +
+                                "o--" +
+                                "o--", 'x').winner('o'));
         
-        assertTrue(new Location("  x" +
-                                " x " +
-                                "x  ", 'x').winner('x'));
+        assertTrue(new Location("--x" +
+                                "-x-" +
+                                "x--", 'x').winner('x'));
         
-        assertTrue(new Location("x  " +
-                                " x " +
-                                "  x", 'x').winner('x'));
+        assertTrue(new Location("x--" +
+                                "-x-" +
+                                "--x", 'x').winner('x'));
     }
     
     @Test
     public void testMinimax()
     {
-        assertEquals(6, new Location("xxx      ", 'x').minimax());
-        assertEquals(-6, new Location("ooo      ", 'o').minimax());
+        assertEquals(6, new Location("xxx------", 'x').minimax());
+        assertEquals(-6, new Location("ooo------", 'o').minimax());
         assertEquals(0, new Location("xoxxoxoxo", 'x').minimax());
-        assertEquals(6, new Location("xx       ", 'x').minimax());
-        assertEquals(-6, new Location("oo       ", 'o').minimax());
+        assertEquals(6, new Location("xx-------", 'x').minimax());
+        assertEquals(-6, new Location("oo-------", 'o').minimax());
         assertEquals(0, new Location().minimax());
         
     }
@@ -117,16 +117,16 @@ public class LocationTest {
     @Test
     public void testBestMove()
     {
-        assertEquals(2, new Location("xx       ", 'x').bestMove());
-        assertEquals(2, new Location("xx       ", 'x').bestMove());
+        assertEquals(2, new Location("xx-------", 'x').bestMove());
+        assertEquals(2, new Location("xx-------", 'x').bestMove());
     }
     
     @Test
     public void testGameOver()
     {
         assertFalse(new Location().gameOver());
-        assertTrue(new Location("xxx      ", 'x').gameOver());
-        assertTrue(new Location("ooo      ", 'x').gameOver());
+        assertTrue(new Location("xxx------", 'x').gameOver());
+        assertTrue(new Location("ooo------", 'x').gameOver());
         assertTrue(new Location("xoxxoxoxo", 'x').gameOver());
     }
 }
