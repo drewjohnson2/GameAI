@@ -3,8 +3,10 @@
 * General AI
 * User Interface
 ## What doesn't work
-* Integration with server
 * Deathmatch AI
+## Not Implemented
+* Human user move functionality
+* Integration with server
 # AI Implementation Information
 For integration with the server specific steps need to be taken to ensure the program works properly.
 These steps are outlined below.
