@@ -105,11 +105,11 @@ public class LocationTest {
     @Test
     public void testMinimax()
     {
-        assertEquals(6, new Location("xxx------", 'x').minimax());
-        assertEquals(-6, new Location("ooo------", 'o').minimax());
+        assertEquals(7, new Location("xxx------", 'x').minimax());
+        assertEquals(-7, new Location("ooo------", 'o').minimax());
         assertEquals(0, new Location("xoxxoxoxo", 'x').minimax());
-        assertEquals(6, new Location("xx-------", 'x').minimax());
-        assertEquals(-6, new Location("oo-------", 'o').minimax());
+        assertEquals(7, new Location("xx-------", 'x').minimax());
+        assertEquals(-7, new Location("oo-------", 'o').minimax());
         assertEquals(0, new Location().minimax());
         
     }

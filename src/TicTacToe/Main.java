@@ -1,17 +1,85 @@
+/**
+ * IGNORE THIS MAIN. THIS IS A DUMMY UNIT MADE COMPLETELY FOR TESTING PURPOSES
+*/
+
+
 package TicTacToe;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main 
 {
     
     public static void main(String [] args)
-    {        
-        Location location = new Location();
-        Scanner input = new Scanner(System.in);
-        char [] gameBoard = new char [9];
-        int counter = 1;
-        location.turn = 'o';
+    {   
+//        char[] gameBoard = {'x', 'o', 'x',
+//                            '-', 'x', 'o',
+//                            'o', 'x', 'o'};
+//        
+//        char myMove = 'o';
+//        
+//        int optimalMove;
+//        
+//        List<Integer> list = new ArrayList<>();
+//        
+//        for(int i = 0; i < gameBoard.length; i++)
+//        {
+//            if(gameBoard[i] == myMove)
+//            {
+//                list.add(i);
+//            }
+//        }
+//        
+//        DeathMatch dm = new DeathMatch(gameBoard, myMove);
+//        
+//        System.out.println("Non-losing moves:\n");
+//        list = dm.checkMove(list);
+//        
+//        for(int i = 0; i < list.size(); i++)
+//        {
+//            System.out.println(list.get(i).toString());
+//        }
+//        System.out.println();
+//        
+//        System.out.println("No Middle:\n");
+//        
+//        list = dm.removeMiddle(list);
+//        
+//        for(int i = 0; i < list.size(); i++)
+//        {
+//            System.out.println(list.get(i).toString());
+//        }
+//        
+//        System.out.println();
+//        
+//        System.out.println("No Corners:\n");
+//        list = dm.removeCorners(list);
+//        
+//        for(int i = 0; i < list.size(); i++)
+//        {
+//            System.out.println(list.get(i).toString());
+//        }
+//        System.out.println();
+//        
+//        
+//        optimalMove = dm.makeMove(list);
+//        
+//        System.out.println("Move to Make:\n");
+//        System.out.println(optimalMove);
+        
+        
+        
+        
+        
+        
+        char ourTurn = 'o';
+        Location location = new Location(ourTurn);
+//        Scanner input = new Scanner(System.in);
+//        char [] gameBoard = new char [9];
+//        int counter = 1;
+//        location.turn = 'o';
         char [] test = {'x','-', '-', 'x', '-', '-','-','-','-'};
         System.arraycopy(test, 0, location.board, 0, test.length);
         int best = location.bestMove();
@@ -23,20 +91,20 @@ public class Main
 //        {
 //            gameBoard[i] = '-';
 //        }
-        
+//        
         print(test);
-        
+//        
 //        do
 //        {
 //            
-//            if(location.turn == 'x')
+//            if(location.turn == ourTurn)
 //            {
 //                System.out.println("Move?");
 //                int index = input.nextInt();
 //                location.move(index-1);
 //            }
 //            
-//            else if(location.turn == 'o')
+//            else
 //            {
 //                int best = location.bestMove();
 //                location.move(best);
@@ -47,6 +115,8 @@ public class Main
 //            counter++;
 //            
 //        } while(!location.gameOver() || counter == 8);
+//    
+//    
     }
     
     public static void print(char [] gameBoard)
@@ -65,6 +135,7 @@ public class Main
         }
         System.out.println();
     }
+    
     
     
 }
