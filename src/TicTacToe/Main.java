@@ -14,11 +14,16 @@ public class Main
     
     public static void main(String [] args)
     {   
-//        char[] gameBoard = {'x', 'o', 'x',
-//                            '-', 'x', 'o',
-//                            'o', 'x', 'o'};
-//        
-//        char myMove = 'o';
+        char[] gameBoard = {'x', 'o', 'x',
+                            '-', 'x', 'o',
+                            'o', 'x', 'o'};
+        
+        char myMove = 'x';
+        
+        Facade facade = new Facade(gameBoard, myMove);
+        int whichMove = facade.getValue();
+        
+        System.out.println(whichMove);
 //        
 //        int optimalMove;
 //        
@@ -74,25 +79,25 @@ public class Main
         
         
         
-        char ourTurn = 'o';
-        Location location = new Location(ourTurn);
+//        char ourTurn = 'o';
+//        Location location = new Location(ourTurn);
 //        Scanner input = new Scanner(System.in);
 //        char [] gameBoard = new char [9];
 //        int counter = 1;
 //        location.turn = 'o';
-        char [] test = {'x','-', '-', 'x', '-', '-','-','-','-'};
-        System.arraycopy(test, 0, location.board, 0, test.length);
-        int best = location.bestMove();
-        System.out.println(best);
-        location.move(best);
-        System.arraycopy(location.board, 0, test, 0, test.length);
+//        char [] test = {'x','-', '-', 'x', '-', '-','-','-','-'};
+//        System.arraycopy(test, 0, location.board, 0, test.length);
+//        int best = location.bestMove();
+//        System.out.println(best);
+//        location.move(best);
+//        System.arraycopy(location.board, 0, test, 0, test.length);
         
 //        for(int i = 0; i < gameBoard.length; i++)
 //        {
 //            gameBoard[i] = '-';
 //        }
 //        
-        print(test);
+//        print(test);
 //        
 //        do
 //        {
