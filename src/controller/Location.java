@@ -1,4 +1,16 @@
-package TicTacToe;
+/**
+ * This is an implementation of the minimax algorithm for a tic-tac-toe
+ * game. 
+ * 
+ * Implementation notes for the minimax have been
+ * taken from Chong Kim at https://youtu.be/9z2Z6xiauNA
+ * 
+ * @author  Drew Johnson
+ * @version 1.0
+ * @since   2017-11-10
+ */
+
+package controller;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,10 +23,14 @@ public class Location {
     public static final int BOARD_SIZE = DIM * DIM;
     public char [] board;
     public char turn;
+    public char oppMove;
+    public char myMove;
     
-    public Location()
+    public Location(char myMove)
     {                                         
-        turn = 'x';                             //Initial turn is for 'x'
+        turn = myMove;                             //Initial turn
+        this.myMove = myMove;
+        oppMove = (myMove == 'X' ? 'O' : 'X');
         board = new char[BOARD_SIZE];           
         
         for(int i = 0; i < BOARD_SIZE; i++)
@@ -44,7 +60,7 @@ public class Location {
     public Location move(int index)
     {
         board[index] = turn;
-        turn = (turn == 'x' ? 'o' : 'x'); // Change turns
+        turn = (turn == 'X' ? 'O' : 'X'); // Change turns
         return this;
     }
     
@@ -59,7 +75,7 @@ public class Location {
     public Location remove(int index)
     {
         board[index] = '-';     // Removes move from board
-        turn = (turn == 'x' ? 'o' : 'x');   // change turns
+        turn = (turn == 'X' ? 'O' : 'X');   // change turns
         return this;
     }
     
@@ -166,10 +182,10 @@ public class Location {
      */
     public int minimax()
     {
-        if(winner('x'))
+        if(winner(myMove))
             return blanks() + 1;
         
-        if(winner('o'))
+        if(winner(oppMove))
             return -blanks() - 1;
         
         if(blanks() == 0) 
@@ -177,17 +193,25 @@ public class Location {
         
         List<Integer> list = new ArrayList<>();
         
-        for(Integer index : possibleMoves())
+        for (Integer index : possibleMoves())
         {
             list.add(move(index).minimax());
             remove(index);
         }
-        return turn == 'x' ? Collections.max(list) : Collections.min(list);
+        return turn == myMove ? Collections.max(list) : Collections.min(list);
     }
     
+    /**
+     * Compares moves based on the index returned by the minimax method.
+     * 
+     * @return if the user is 'x' (AI) the max is returned. Else, the minimum
+     * is returned.
+     */
     public int bestMove()
     {
         Comparator<Integer> cmp = new Comparator<Integer>() {
+            // Implements empty compare method used for comparing values 
+            // from variable 'list' of possible moves.
             @Override
             public int compare(Integer first, Integer second) 
             {
@@ -202,13 +226,22 @@ public class Location {
         };
         
         List<Integer> list = possibleMoves();
-        
-        return turn == 'x' ? Collections.max(list, cmp) : Collections.min(list, cmp);
+      
+        return turn == myMove ? Collections.max(list, cmp) : Collections.min(list, cmp);
     }
     
+    /**
+     * This determines whether or not the game is over.
+     * 
+     * @return a boolean value on whether 'x' or 'o' is the winner or a draw.
+     */
     public boolean gameOver()
     {
-        return winner('x') || winner('o') || blanks() == 0;
+        return winner(myMove) || winner(oppMove) || blanks() == 0;
     }
 
+    public String toString()
+    {
+        return new String(board);
+    }
 }
