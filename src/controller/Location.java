@@ -10,7 +10,7 @@
  * @since   2017-11-10
  */
 
-package TicTacToe;
+package controller;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,7 +30,7 @@ public class Location {
     {                                         
         turn = myMove;                             //Initial turn
         this.myMove = myMove;
-        oppMove = (myMove == 'x' ? 'o' : 'x');
+        oppMove = (myMove == 'X' ? 'O' : 'X');
         board = new char[BOARD_SIZE];           
         
         for(int i = 0; i < BOARD_SIZE; i++)
@@ -60,7 +60,7 @@ public class Location {
     public Location move(int index)
     {
         board[index] = turn;
-        turn = (turn == 'x' ? 'o' : 'x'); // Change turns
+        turn = (turn == 'X' ? 'O' : 'X'); // Change turns
         return this;
     }
     
@@ -75,7 +75,7 @@ public class Location {
     public Location remove(int index)
     {
         board[index] = '-';     // Removes move from board
-        turn = (turn == 'x' ? 'o' : 'x');   // change turns
+        turn = (turn == 'X' ? 'O' : 'X');   // change turns
         return this;
     }
     
@@ -193,7 +193,7 @@ public class Location {
         
         List<Integer> list = new ArrayList<>();
         
-        for(Integer index : possibleMoves())
+        for (Integer index : possibleMoves())
         {
             list.add(move(index).minimax());
             remove(index);
