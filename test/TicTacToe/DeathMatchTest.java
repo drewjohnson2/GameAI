@@ -5,6 +5,7 @@
  */
 package TicTacToe;
 
+import controller.DeathMatch;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,12 +22,14 @@ import static org.junit.Assert.*;
  */
 public class DeathMatchTest {
     
-    char[] board = {'x', 'o', 'o',
-                    'o', 'x', 'x',
-                    '-', 'x', 'o'};
-        char myMove = 'x';
+    public char[] board = {'X', 'O', 'O',
+                    'O', 'X', 'X',
+                    '-', 'X', 'O'};
+    public char myMove = 'X';
     
-    public DeathMatchTest() {
+    public DeathMatchTest(char [] board, char myMove) {
+        this.board = board;
+        this.myMove = myMove;
     }
     
     @BeforeClass
@@ -67,12 +70,12 @@ public class DeathMatchTest {
     @Test
     public void testLosingTurn()
     {
-        assertTrue(new DeathMatch("xxx------".toCharArray(), 'x').losingTurn('x', "xxx------".toCharArray()));
-        assertTrue(new DeathMatch("o--o--o--".toCharArray(), 'x').losingTurn('o', "o--o--o--".toCharArray()));
+        assertTrue(new DeathMatch("XXX------".toCharArray(), 'X').losingTurn('X', "XXX------".toCharArray()));
+        assertTrue(new DeathMatch("O--O--O--".toCharArray(), 'X').losingTurn('O', "O--O--O--".toCharArray()));
         
-        assertTrue(new DeathMatch("--x-x-x--".toCharArray(), 'x').losingTurn('x', "--x-x-x--".toCharArray()));
+        assertTrue(new DeathMatch("--X-X-X--".toCharArray(), 'X').losingTurn('X', "--X-X-X--".toCharArray()));
         
-        assertTrue(new DeathMatch("x---x---x".toCharArray(), 'x').losingTurn('x', "x---x---x".toCharArray()));
+        assertTrue(new DeathMatch("X---X---X".toCharArray(), 'X').losingTurn('X', "X---X---X".toCharArray()));
         //assertTrue(new DeathMatch("ooxxxoox-".toCharArray(), 'x').losingTurn('o', "ooxxoxox-".toCharArray()));
     }
     
@@ -80,9 +83,9 @@ public class DeathMatchTest {
     public void testCheckMove()
     {
       
-        char[] newBoard = {'x', 'o', 'x',
-                           'o', 'o', 'x',
-                           '-', 'x', 'o'};
+        char[] newBoard = {'X', 'O', 'X',
+                           'O', 'O', 'X',
+                           '-', 'X', 'O'};
         
         DeathMatch test = new DeathMatch(newBoard, myMove);
 //        for(int i = 0; i < test.board.length; i++)
@@ -119,7 +122,7 @@ public class DeathMatchTest {
         List<Integer> list = new ArrayList<>();
         list.add(1);
         
-        DeathMatch test = new DeathMatch(board, 'o');
+        DeathMatch test = new DeathMatch(board, 'O');
         System.out.println("Hey");
         
         list = test.removeCorners(list);
@@ -152,7 +155,7 @@ public class DeathMatchTest {
         List<Integer> list = new ArrayList<>();
         list.add(4);
         
-        DeathMatch test = new DeathMatch(board, 'o');
+        DeathMatch test = new DeathMatch(board, 'O');
         
         list = test.removeMiddle(list);
         

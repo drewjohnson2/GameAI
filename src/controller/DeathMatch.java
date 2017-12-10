@@ -12,7 +12,7 @@ import java.util.List;
 
 public class DeathMatch {
     
-    List<Integer> possibleMoves;
+    public List<Integer> possibleMoves;
     public char [] board;
     public static final int DIM = 3;
     public static final int BOARD_SIZE = DIM * DIM;

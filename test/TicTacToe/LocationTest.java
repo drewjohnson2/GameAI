@@ -5,6 +5,7 @@
  */
 package TicTacToe;
 
+import controller.Location;
 import java.util.List;
 import java.util.ArrayList;
 import org.junit.After;
@@ -20,7 +21,10 @@ import static org.junit.Assert.*;
  */
 public class LocationTest {
     
-    public LocationTest() {
+    public char myMove;
+    
+    public LocationTest(char myMove) {
+        this.myMove = myMove;
     }
     
     @BeforeClass
@@ -46,25 +50,25 @@ public class LocationTest {
     @Test
     public void testLocation()
     {
-        Location location = new Location();
-        assertEquals('x', location.turn);
+        Location location = new Location(myMove);
+        assertEquals('X', location.turn);
         assertEquals("---------", location.toString());
     }
     
     @Test
     public void testMove()
     {
-        Location location = new Location().move(1);
-        assertEquals('o', location.turn);
-        assertEquals("-x-------", location.toString());
+        Location location = new Location(myMove).move(1);
+        assertEquals('O', location.turn);
+        assertEquals("-X-------", location.toString());
         
     }
     
     @Test
     public void testRemove()
     {
-        Location location = new Location().move(1).remove(1);
-        assertEquals('x', location.turn);
+        Location location = new Location(myMove).move(1).remove(1);
+        assertEquals('X', location.turn);
         assertEquals("---------", location.toString());
     }
     
@@ -80,53 +84,53 @@ public class LocationTest {
         list.remove(new Integer(1));
         list.remove(new Integer(2));
         
-        assertEquals(list, new Location().move(1).move(2).possibleMoves());
+        assertEquals(list, new Location(myMove).move(1).move(2).possibleMoves());
     }
     
     @Test
     public void testWinner() throws Exception
     {
-        assertFalse(new Location().winner('x'));
-        assertTrue(new Location("xxx------", 'x').winner('x'));
+        assertFalse(new Location(myMove).winner('X'));
+        assertTrue(new Location("XXX------", 'X').winner('X'));
         
-        assertTrue(new Location("o--" +
-                                "o--" +
-                                "o--", 'x').winner('o'));
+        assertTrue(new Location("O--" +
+                                "O--" +
+                                "O--", 'X').winner('O'));
         
-        assertTrue(new Location("--x" +
-                                "-x-" +
-                                "x--", 'x').winner('x'));
+        assertTrue(new Location("--X" +
+                                "-X-" +
+                                "X--", 'X').winner('X'));
         
-        assertTrue(new Location("x--" +
-                                "-x-" +
-                                "--x", 'x').winner('x'));
+        assertTrue(new Location("X--" +
+                                "-X-" +
+                                "--X", 'X').winner('X'));
     }
     
     @Test
     public void testMinimax()
     {
-        assertEquals(7, new Location("xxx------", 'x').minimax());
-        assertEquals(-7, new Location("ooo------", 'o').minimax());
-        assertEquals(0, new Location("xoxxoxoxo", 'x').minimax());
-        assertEquals(7, new Location("xx-------", 'x').minimax());
-        assertEquals(-7, new Location("oo-------", 'o').minimax());
-        assertEquals(0, new Location().minimax());
+        assertEquals(7, new Location("XXX------", 'X').minimax());
+        assertEquals(-7, new Location("OOO------", 'O').minimax());
+        assertEquals(0, new Location("XOXXOXOXO", 'X').minimax());
+        assertEquals(7, new Location("XX-------", 'X').minimax());
+        assertEquals(-7, new Location("OO-------", 'O').minimax());
+        assertEquals(0, new Location(myMove).minimax());
         
     }
     
     @Test
     public void testBestMove()
     {
-        assertEquals(2, new Location("xx-------", 'x').bestMove());
-        assertEquals(2, new Location("xx-------", 'x').bestMove());
+        assertEquals(2, new Location("XX-------", 'X').bestMove());
+        assertEquals(2, new Location("XX-------", 'X').bestMove());
     }
     
     @Test
     public void testGameOver()
     {
-        assertFalse(new Location().gameOver());
-        assertTrue(new Location("xxx------", 'x').gameOver());
-        assertTrue(new Location("ooo------", 'x').gameOver());
-        assertTrue(new Location("xoxxoxoxo", 'x').gameOver());
+        assertFalse(new Location(myMove).gameOver());
+        assertTrue(new Location("XXX------", 'X').gameOver());
+        assertTrue(new Location("OOO------", 'X').gameOver());
+        assertTrue(new Location("XOXXOXOXO", 'X').gameOver());
     }
 }
